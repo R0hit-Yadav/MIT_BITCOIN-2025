@@ -5,6 +5,7 @@ import Send from "./pages/Send";
 import History from "./pages/History";
 import Balance from "./pages/Balance";
 import Crypto from "./pages/Crypto";
+import NFTMarketplace from "./components/NFTMarketplace";
 import { WalletProvider } from "./context/WalletContext";
 import "./App.css";
 
@@ -19,6 +20,7 @@ export default function App() {
           <Route path="/history" element={<History />} />
           <Route path="/balance" element={<Balance />} />
           <Route path="/crypto" element={<Crypto />} />
+          <Route path="/nft-marketplace" element={<NFTMarketplace />} />
         </Routes>
       </Router>
     </WalletProvider>
