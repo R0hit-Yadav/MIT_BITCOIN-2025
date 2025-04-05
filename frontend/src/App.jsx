@@ -1,8 +1,11 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import { WalletProvider } from "./context/WalletContext";
+import Navbar from "./components/Navbar"
 import Home from "./pages/Home";
+import Send from "./pages/Send";
+import History from "./pages/History";
 import Balance from "./pages/Balance";
+import Crypto from "./pages/Crypto";
+import { WalletProvider } from "./context/WalletContext";
 import "./App.css";
 
 export default function App() {
@@ -12,8 +15,10 @@ export default function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/send" element={<Send />} />
+          <Route path="/history" element={<History />} />
           <Route path="/balance" element={<Balance />} />
-
+          <Route path="/crypto" element={<Crypto />} />
         </Routes>
       </Router>
     </WalletProvider>
