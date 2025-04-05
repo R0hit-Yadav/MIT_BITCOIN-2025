@@ -33,10 +33,11 @@ export default function Navbar() {
         
         <ul className={isOpen ? "active" : ""}>
           <li><Link to="/" onClick={() => setIsOpen(false)}>Home</Link></li>
-          <li><Link to="/send" onClick={() => setIsOpen(false)}>Send</Link></li>
+          <li><Link to="/send" onClick={() => setIsOpen(false)}>Transaction</Link></li>
           <li><Link to="/history" onClick={() => setIsOpen(false)}>History</Link></li>
           <li><Link to="/balance" onClick={() => setIsOpen(false)}>Balance</Link></li>
           <li><Link to="/crypto" onClick={() => setIsOpen(false)}>Crypto</Link></li>
+          <li><Link to="/nft-marketplace" onClick={() => setIsOpen(false)}>NFT</Link></li>
         </ul>
 
         <div className="wallet-section">

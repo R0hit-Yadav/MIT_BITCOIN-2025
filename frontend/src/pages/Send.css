@@ -1,6 +1,6 @@
 .send-container {
   max-width: 800px;
-  margin: 60px auto;
+  margin: 120px auto 60px;
   padding: 32px;
   background-color: var(--bg-card);
   border-radius: 16px;
@@ -9,8 +9,7 @@
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease-in-out;
-  margin-top: 120px;
-  
+  width: 90%;
 }
 
 .send-container:hover {
@@ -295,15 +294,41 @@
 }
 
 /* Add responsive styles */
-@media (max-width: 640px) {
+@media (max-width: 1024px) {
   .send-container {
-    max-width: 100%;
-    margin: 20px auto;
+    width: 95%;
+    margin: 100px auto 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .send-container {
+    width: 90%;
+    margin: 90px auto 30px;
     padding: 24px;
   }
   
   .send-container h1 {
     font-size: 24px;
+  }
+
+  .send-container:before {
+    width: 120px;
+    height: 120px;
+    top: -20px;
+    right: -20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .send-container {
+    width: calc(100% - 32px);
+    margin: 80px auto 20px;
+    padding: 20px;
+  }
+  
+  .send-container h1 {
+    font-size: 22px;
   }
   
   .tx-details p {
@@ -312,6 +337,61 @@
   
   .tx-details p strong {
     margin-bottom: 4px;
+  }
+
+  .amount-input-wrapper::after {
+    font-size: 12px;
+    padding: 3px 6px;
+  }
+
+  .gas-info {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .send-container input[type="text"] {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+
+  .send-container button {
+    padding: 12px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .send-container {
+    width: calc(100% - 24px);
+    margin: 75px auto 15px;
+    padding: 16px;
+  }
+
+  .send-container h1 {
+    font-size: 20px;
+  }
+
+  .send-container:before {
+    width: 80px;
+    height: 80px;
+    top: -15px;
+    right: -15px;
+  }
+
+  .tx-details-container {
+    padding: 16px;
+  }
+
+  .tx-details-container h3 {
+    font-size: 18px;
+  }
+
+  .connect-prompt {
+    padding: 1.5rem;
+  }
+
+  .connect-prompt p {
+    font-size: 1rem;
   }
 }
 

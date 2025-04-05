@@ -166,11 +166,11 @@ export default function Home() {
         <h1>
           <span className="gradient-text">VaultX</span>
           <br />
-          <span className="gradient-text">Wallet</span>
+          <span className="gradient-text"></span>
         </h1>
         
         <div className="hero-description">
-          <p>Secure, fast, and easy-to-use wallet for your Ethereum assets</p>
+          <p>Secure, fast, and easy-to-use Platform for your Ethereum assets</p>
         </div>
         
         <div className="hero-buttons">
@@ -227,19 +227,19 @@ export default function Home() {
               <path d="M17 8l4 4-4 4" />
             </svg>
           </div>
-          <h3>Swap</h3>
-          <p>Exchange Ethereum and other cryptocurrencies</p>
+          <h3>History</h3>
+          <p>Track your transaction history</p>
         </div>
 
-        <div className="feature-card" onClick={() => window.location.href = '/dapp'}>
+        <div className="feature-card" onClick={() => window.location.href = '/crypto'}>
           <div className="card-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M20 7h-9l-2-2H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2z" />
               <path d="M12 14.5L7 12l5-2.5L17 12l-5 2.5z" />
             </svg>
           </div>
-          <h3>NFTs</h3>
-          <p>View and manage your NFT collection</p>
+          <h3>Crypto info</h3>
+          <p>Improve your crypto knowledge</p>
         </div>
       </div>
     </section>
@@ -270,8 +270,8 @@ export default function Home() {
     <p>&copy; 2025 VaultX. All rights reserved.</p>
     <div className="footer-links">
       <a href="/about">About</a>
-      <a href="/privacy">Privacy</a>
-      <a href="/terms">Terms</a>
+      <a href="/send">Transaction</a>
+      <a href="/history">History</a>
       <a href="/contact">Contact</a>
     </div>
   </footer>
