@@ -92,17 +92,9 @@ We welcome contributions from the community! Whether you're fixing bugs, adding 
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 License
-
-This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
-
----
-
 ## 🔮 Vision
 
 VaultX aims to become the definitive solution for crypto asset management, bringing simplicity to blockchain complexity and empowering users with complete control over their digital future.
 
 > **VaultX — One Wallet to Rule Them All** 🔗
 
----
-Answer from Perplexity: pplx.ai/share
