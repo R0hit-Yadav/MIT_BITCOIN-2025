@@ -77,29 +77,36 @@ async fn main() {
     }
 
     // Enable CORS
-    let cors = warp::cors().allow_any_origin().allow_methods(vec!["GET", "POST"]).allow_headers(vec!["Content-Type"]);
+    let cors = warp::cors()
+        .allow_any_origin()
+        .allow_methods(vec!["GET", "POST", "OPTIONS"])
+        .allow_headers(vec!["Content-Type", "Authorization"])
+        .allow_credentials(true)
+        .expose_headers(vec!["Content-Type"]);
 
     // API Routes
     let balance_route = warp::path!("balance" / String / String)
         .and(with_providers(providers.clone()))
-        .and_then(get_balance);
+        .and_then(get_balance)
+        .with(cors.clone());
 
     let send_tx_route = warp::path!("send")
         .and(warp::post())
         .and(warp::body::json())
         .and(with_providers(providers.clone()))
         .and(with_chains(chains.clone()))
-        .and_then(send_transaction);
+        .and_then(send_transaction)
+        .with(cors.clone());
 
     let history_tx_routes = warp::path!("history" / String / String)
         .and(with_chains(chains.clone()))
         .and_then(get_transaction_history)
-        .with(warp::cors().allow_any_origin());
+        .with(cors.clone());
 
     let routes = balance_route
         .or(send_tx_route)
         .or(history_tx_routes)
-        .with(cors);
+        .with(warp::log("api"));
 
     println!("Server running on http://localhost:3030");
     warp::serve(routes).run(([127, 0, 0, 1], 3030)).await;
