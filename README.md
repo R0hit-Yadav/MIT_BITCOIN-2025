@@ -1,62 +1,55 @@
 # 🚀 VaultX — A Multi-Chain Crypto Management Platform
 
-VaultX is a powerful, user-friendly platform built to simplify your cryptocurrency journey across multiple blockchains. Whether you're sending, receiving, or tracking assets, VaultX puts everything you need in one seamless interface — built with performance, security, and experience at its core.
+VaultX is a powerful, user-friendly platform that simplifies cryptocurrency management across multiple blockchains. With a unified interface built for performance, security, and exceptional user experience, VaultX puts complete control of your digital assets at your fingertips.
 
----
+## ✨ Why VaultX?
 
-## 🌟 Inspiration
+Managing cryptocurrencies across different blockchain networks has become increasingly complex. VaultX eliminates the frustration of switching between wallets and interfaces by providing a single, intuitive platform where you can:
 
-Managing cryptocurrencies across different blockchain networks is increasingly complex — switching wallets, juggling interfaces, and keeping track of gas fees is time-consuming and overwhelming. VaultX was born out of a personal need for a unified platform that brings clarity and control to multi-chain asset management.
+- **Manage assets** across multiple chains seamlessly
+- **Track balances** in real-time with precision
+- **Execute transactions** with confidence and clarity
+- **Monitor gas fees** to optimize transaction costs
 
----
+## 🔑 Key Features
 
-## 💡 Features
+- **🔁 Cross-Chain Operations** - Send and receive tokens across supported networks without switching applications
+- **💼 Unified Wallet View** - See accurate balances for any wallet address in one dashboard
+- **📊 Comprehensive Transaction History** - Access detailed logs with complete metadata
+- **⛽ Real-Time Gas Tracking** - Monitor network fees and transaction status as they happen
+- **🔐 Enterprise-Grade Security** - Robust signature verification and secure transaction handling
+- **🔍 Explorer Integration** - Jump directly to blockchain explorers from within the interface
 
-VaultX provides a seamless experience to manage your crypto assets across chains:
+## 🛠️ Technology Stack
 
-- 🔁 Cross-Chain Transactions: Effortlessly send and receive tokens across supported networks
-- 💼 Real-Time Wallet Balances: View accurate balances for any wallet address
-- 🧾 Transaction History: Full transaction logs with detailed metadata
-- 🔐 Secure Asset Management: Signature verification and secure transaction handling
-- 🔍 Explorer Integration: Jump to blockchain explorers directly from VaultX
-- ⛽ Live Gas Tracking: Keep an eye on gas prices and transaction status in real time
+### Backend (Rust)
+- **Warp** - High-performance web framework
+- **ethers-rs** - Ethereum interaction with WebSocket support
+- **tokio** - Asynchronous runtime for optimal performance
+- **serde** - Efficient data serialization
+- **dotenv** - Environment configuration management
+- **chrono** - Precise date and time handling
 
----
+### Frontend (React + Vite)
+- **Vite** - Next-generation frontend tooling
+- **React** - Responsive UI components
+- **ESLint** - Code quality enforcement
+- **Responsive Design** - Optimized for both desktop and mobile
 
-## 🛠 Tech Stack
+## 📂 Project Structure
 
-### 🔧 Backend (Rust)
-- Warp — Lightning-fast web framework for APIs
-- ethers-rs — Blockchain interaction with WebSocket support
-- tokio — Asynchronous runtime for high-performance networking
-- serde — Efficient serialization framework
-- dotenv — Environment variable management
-- chrono — Date and time handling
-
-### 🎨 Frontend (React + Vite)
-- Vite — Next-generation frontend tooling
-- React — Modern UI development
-- ESLint — Code quality and consistency
-- Responsive Design — Works beautifully on desktop & mobile
-
----
-
-## 🚧 Project Structure
-
-
+```
 vaultx/
 ├── backend/           # Rust backend server
-│   ├── src/          # Source code
-│   ├── Cargo.toml    # Rust dependencies
-│   └── .env          # Environment variables
-└── frontend/         # React frontend
-    ├── src/          # Source code
-    ├── public/       # Static assets
-    ├── package.json  # Node dependencies
+│   ├── src/           # Source code
+│   ├── Cargo.toml     # Rust dependencies
+│   └── .env           # Environment variables
+└── frontend/          # React frontend
+    ├── src/           # Source code
+    ├── public/        # Static assets
+    ├── package.json   # Node dependencies
     └── vite.config.js # Vite configuration
-
-
----
+```
 
 ## 🚀 Getting Started
 
@@ -66,40 +59,38 @@ vaultx/
 - npm or yarn
 
 ### Backend Setup
-bash
+
+```bash
 cd backend
 # Create .env file with your configuration
 cp .env.example .env
 # Install dependencies and run
 cargo run
-
+```
 
 ### Frontend Setup
-bash
+
+```bash
 cd frontend
 # Install dependencies
 npm install
 # Start development server
 npm run dev
-
+```
 
 The application will be available at:
 - Frontend: http://localhost:5173
 - Backend: http://localhost:3000
 
----
-
 ## 🤝 Contributing
 
-Contributions are welcome! Whether it's bug fixes, new features, or documentation — let's make VaultX even better together. 🙌
+We welcome contributions from the community! Whether you're fixing bugs, adding features, or improving documentation, your help makes VaultX better for everyone.
 
 1. Fork the repository
-2. Create your feature branch (git checkout -b feature/amazing-feature)
-3. Commit your changes (git commit -m 'Add some amazing feature')
-4. Push to the branch (git push origin feature/amazing-feature)
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
-
----
 
 ## 📄 License
 
@@ -107,6 +98,11 @@ This project is licensed under the MIT License. See the [LICENSE](./LICENSE) fil
 
 ---
 
-> VaultX — One Wallet to Rule Them All 🔗
+## 🔮 Vision
+
+VaultX aims to become the definitive solution for crypto asset management, bringing simplicity to blockchain complexity and empowering users with complete control over their digital future.
+
+> **VaultX — One Wallet to Rule Them All** 🔗
 
 ---
+Answer from Perplexity: pplx.ai/share
