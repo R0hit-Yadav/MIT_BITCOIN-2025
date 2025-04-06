@@ -1,14 +1,12 @@
-
-
 # 🚀 VaultX — A Multi-Chain Crypto Management Platform
 
-**VaultX** is a powerful, user-friendly platform built to simplify your cryptocurrency journey across multiple blockchains. Whether you're sending, receiving, or tracking assets, VaultX puts everything you need in one seamless interface — built with performance, security, and experience at its core.
+VaultX is a powerful, user-friendly platform built to simplify your cryptocurrency journey across multiple blockchains. Whether you're sending, receiving, or tracking assets, VaultX puts everything you need in one seamless interface — built with performance, security, and experience at its core.
 
 ---
 
 ## 🌟 Inspiration
 
-Managing cryptocurrencies across different blockchain networks is increasingly complex — switching wallets, juggling interfaces, and keeping track of gas fees is time-consuming and overwhelming. VaultX was born out of a personal need for **a unified platform** that brings clarity and control to multi-chain asset management.
+Managing cryptocurrencies across different blockchain networks is increasingly complex — switching wallets, juggling interfaces, and keeping track of gas fees is time-consuming and overwhelming. VaultX was born out of a personal need for a unified platform that brings clarity and control to multi-chain asset management.
 
 ---
 
@@ -16,97 +14,90 @@ Managing cryptocurrencies across different blockchain networks is increasingly c
 
 VaultX provides a seamless experience to manage your crypto assets across chains:
 
-- 🔁 **Cross-Chain Transactions**: Effortlessly send and receive tokens across Holesky and Sepolia testnets.
-- 💼 **Real-Time Wallet Balances**: View accurate balances for **any wallet address**.
-- 🧾 **Transaction History**: Full transaction logs with **detailed metadata**.
-- 🔐 **Secure Asset Management**: Signature verification and secure transaction handling.
-- 🔍 **Explorer Integration**: Jump to Etherscan links directly from VaultX.
-- ⛽ **Live Gas Tracking**: Keep an eye on gas prices and transaction status in real time.
+- 🔁 Cross-Chain Transactions: Effortlessly send and receive tokens across supported networks
+- 💼 Real-Time Wallet Balances: View accurate balances for any wallet address
+- 🧾 Transaction History: Full transaction logs with detailed metadata
+- 🔐 Secure Asset Management: Signature verification and secure transaction handling
+- 🔍 Explorer Integration: Jump to blockchain explorers directly from VaultX
+- ⛽ Live Gas Tracking: Keep an eye on gas prices and transaction status in real time
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠 Tech Stack
 
 ### 🔧 Backend (Rust)
+- Warp — Lightning-fast web framework for APIs
+- ethers-rs — Blockchain interaction with WebSocket support
+- tokio — Asynchronous runtime for high-performance networking
+- serde — Efficient serialization framework
+- dotenv — Environment variable management
+- chrono — Date and time handling
 
-- **Warp** — Lightning-fast web framework for APIs
-- **ethers-rs** — Blockchain interaction with ease
-- **Multi-chain Configuration** — Easily switch between providers
-- **Infura + Etherscan APIs** — Real-time blockchain data integration
-- **Secure Signing** — Transaction safety with signature verification
-
-### 🎨 Frontend (React)
-
-- **Modern React** — Functional components, hooks, and clean structure
-- **React Router** — Smooth client-side navigation
-- **Context API** — State management made elegant
-- **Responsive UI** — Works beautifully on desktop & mobile
-- **Real-Time UX** — Updates for balances, transactions, and more
+### 🎨 Frontend (React + Vite)
+- Vite — Next-generation frontend tooling
+- React — Modern UI development
+- ESLint — Code quality and consistency
+- Responsive Design — Works beautifully on desktop & mobile
 
 ---
 
-## 🚧 Challenges We Faced
+## 🚧 Project Structure
 
-- 🔐 Ensuring **robust security** during signing and transaction handling
-- 🔄 Managing **multi-chain logic** in a clean and scalable way
-- ⚡ Optimizing **performance** for real-time data updates
 
----
+vaultx/
+├── backend/           # Rust backend server
+│   ├── src/          # Source code
+│   ├── Cargo.toml    # Rust dependencies
+│   └── .env          # Environment variables
+└── frontend/         # React frontend
+    ├── src/          # Source code
+    ├── public/       # Static assets
+    ├── package.json  # Node dependencies
+    └── vite.config.js # Vite configuration
 
-## 🏆 Accomplishments
-
-- ✅ Seamless **multi-chain integration**
-- ✨ Intuitive and **user-friendly interface**
-- 🚀 Smooth and secure **end-to-end transaction flow**
-
----
-
-## 📚 What We Learned
-
-- 📦 Building **scalable full-stack** architectures
-- ⛓️ Deep dive into **blockchain development**
-- 🧠 Designing for **modularity and performance**
-
----
-
-## 🔮 What's Next for VaultX
-
-- 🌐 **Support for More Chains** (Polygon, Arbitrum, and more)
-- 🧠 **Advanced Analytics**: Wallet scoring, investment insights, portfolio stats
-- 📲 **Mobile App**: On-the-go access for crypto management
-- 🛡️ **Advanced Security Features**: 2FA, hardware wallet integration, recovery mechanisms
 
 ---
 
 ## 🚀 Getting Started
 
-Clone the project:
+### Prerequisites
+- Rust (latest stable version)
+- Node.js (v16 or higher)
+- npm or yarn
 
-```bash
-git clone https://github.com/yourusername/vaultx.git
-cd vaultx
-```
-
-### Backend (Rust + Warp)
-
-```bash
+### Backend Setup
+bash
 cd backend
+# Create .env file with your configuration
+cp .env.example .env
+# Install dependencies and run
 cargo run
-```
 
-### Frontend (React)
 
-```bash
+### Frontend Setup
+bash
 cd frontend
+# Install dependencies
 npm install
-npm start
-```
+# Start development server
+npm run dev
+
+
+The application will be available at:
+- Frontend: http://localhost:5173
+- Backend: http://localhost:3000
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Whether it's bug fixes, new features, or documentation — let's make VaultX even better **together**. 🙌
+Contributions are welcome! Whether it's bug fixes, new features, or documentation — let's make VaultX even better together. 🙌
+
+1. Fork the repository
+2. Create your feature branch (git checkout -b feature/amazing-feature)
+3. Commit your changes (git commit -m 'Add some amazing feature')
+4. Push to the branch (git push origin feature/amazing-feature)
+5. Open a Pull Request
 
 ---
 
@@ -116,9 +107,6 @@ This project is licensed under the MIT License. See the [LICENSE](./LICENSE) fil
 
 ---
 
-
----
-
-> **VaultX** — One Wallet to Rule Them All 🔗
+> VaultX — One Wallet to Rule Them All 🔗
 
 ---
