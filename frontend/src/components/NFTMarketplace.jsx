@@ -1,45 +1,21 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './NFTMarketplace.css';
+import { connectWallet, createNFT, buyNFT, getListedNFTs } from '../services/blockchain';
+import { ethers } from 'ethers';
 
 const NFTMarketplace = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  
-  // Sample NFT data - in a real app, this would come from your backend/blockchain
-  const nfts = [
-    {
-      id: 1,
-      name: "Cosmic Dreamer",
-      creator: "0x742...3d9",
-      price: "0.5 ETH",
-      image: "https://img.freepik.com/premium-photo/divine-connection-earth-stars-cosmic-dreamer-star-whisperer-character-fantasy-fantastic-illustration-generative-ai_850000-12326.jpg?w=1380",
-      category: "art"
-    },
-    {
-      id: 2,
-      name: "Digital Warrior",
-      creator: "0x891...4f2",
-      price: "0.8 ETH",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW5dcnd_fle5FEGI4Syi2efXA3pUk8A2HrZA&s",
-      category: "gaming"
-    },
-    {
-      id: 3,
-      name: "Abstract Thoughts",
-      creator: "0x342...9c1",
-      price: "0.3 ETH",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvKGCMSftFKPQHsUGKU9Y1jM6YHGCSQwW-fw&s",
-      category: "art"
-    },
-    {
-      id: 4,
-      name: "Metaverse Land",
-      creator: "0x123...4f5",
-      price: "2.0 ETH",
-      image: "https://images.theconversation.com/files/458455/original/file-20220418-22-wqead9.jpg?ixlib=rb-4.1.0&rect=318%2C0%2C2604%2C1302&q=45&auto=format&w=1356&h=668&fit=crop",
-      category: "virtual-world"
-    }
-  ];
+  const [connectedAccount, setConnectedAccount] = useState('');
+  const [nfts, setNfts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [newNFT, setNewNFT] = useState({
+    name: '',
+    description: '',
+    price: '',
+    image: null
+  });
 
   const categories = [
     { id: 'all', name: 'All NFTs', icon: '🌟' },
@@ -47,6 +23,79 @@ const NFTMarketplace = () => {
     { id: 'gaming', name: 'Gaming', icon: '🎮' },
     { id: 'virtual-world', name: 'Virtual World', icon: '🌍' }
   ];
+
+  useEffect(() => {
+    loadNFTs();
+    checkIfWalletIsConnected();
+  }, []);
+
+  const checkIfWalletIsConnected = async () => {
+    if (window.ethereum) {
+      const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+      if (accounts.length > 0) {
+        setConnectedAccount(accounts[0]);
+      }
+    }
+  };
+
+  const loadNFTs = async () => {
+    setIsLoading(true);
+    try {
+      const listedNFTs = await getListedNFTs();
+      const formattedNFTs = listedNFTs.map(nft => ({
+        id: nft.tokenId,
+        creator: nft.seller,
+        price: ethers.formatEther(nft.price),
+        image: `https://ipfs.io/ipfs/${nft.imageHash}`, 
+      }));
+      setNfts(formattedNFTs);
+    } catch (error) {
+      console.error('Error loading NFTs:', error);
+    }
+    setIsLoading(false);
+  };
+
+  const handleConnectWallet = async () => {
+    const account = await connectWallet();
+    if (account) {
+      setConnectedAccount(account);
+    }
+  };
+
+  const handleCreateNFT = async (e) => {
+    e.preventDefault();
+    if (!newNFT.image || !newNFT.name || !newNFT.price) {
+      alert('Please fill all fields');
+      return;
+    }
+
+    try {
+      // Here you would typically upload the image to IPFS and get the URI
+      // For now, we'll use a placeholder
+      const tokenURI = `https://ipfs.io/ipfs/${newNFT.image}`;
+      const priceInWei = ethers.parseEther(newNFT.price);
+      
+      const success = await createNFT(tokenURI, priceInWei);
+      if (success) {
+        setShowCreateModal(false);
+        setNewNFT({ name: '', description: '', price: '', image: null });
+        loadNFTs();
+      }
+    } catch (error) {
+      console.error('Error creating NFT:', error);
+    }
+  };
+
+  const handleBuyNFT = async (tokenId, price) => {
+    try {
+      const success = await buyNFT(tokenId, price);
+      if (success) {
+        setNfts(prevNfts => prevNfts.filter(nft => nft.id !== tokenId));
+      }
+    } catch (error) {
+      console.error('Error buying NFT:', error);
+    }
+  };
 
   const filteredNFTs = activeCategory === 'all' 
     ? nfts 
@@ -64,6 +113,22 @@ const NFTMarketplace = () => {
       <div className="marketplace-header">
         <h1>NFT Marketplace</h1>
         <p>Discover, collect, and trade unique digital assets</p>
+        <div className="wallet-section">
+          {connectedAccount ? (
+            <button className="wallet-btn connected">
+              {connectedAccount.slice(0, 6)}...{connectedAccount.slice(-4)}
+            </button>
+          ) : (
+            <button className="wallet-btn" onClick={handleConnectWallet}>
+              Connect Wallet
+            </button>
+          )}
+          {connectedAccount && (
+            <button className="create-btn" onClick={() => setShowCreateModal(true)}>
+              Create NFT
+            </button>
+          )}
+        </div>
       </div>
 
       <div className="filter-section">
@@ -123,37 +188,52 @@ const NFTMarketplace = () => {
               </div>
               <div className="nft-price">
                 <span>Price</span>
-                <span className="price-value">{nft.price}</span>
+                <span className="price-value">{nft.price} ETH</span>
               </div>
-              <button className="buy-btn">
-                <span>
-                  <svg 
-                    width="20" 
-                    height="20" 
-                    viewBox="0 0 20 20" 
-                    fill="none" 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    style={{ marginRight: '8px', verticalAlign: 'middle' }}
-                  >
-                    <path 
-                      d="M10 4L18 8L10 12L2 8L10 4Z" 
-                      fill="currentColor" 
-                      fillOpacity="0.8"
-                    />
-                    <path 
-                      d="M10 12V18" 
-                      stroke="currentColor" 
-                      strokeWidth="2" 
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                  Buy Now
-                </span>
+              <button className="buy-btn" onClick={() => handleBuyNFT(nft.id, ethers.parseEther(nft.price))}>
+                <span>Buy Now</span>
               </button>
             </div>
           </div>
         ))}
       </div>
+
+      {showCreateModal && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <h2>Create New NFT</h2>
+            <form onSubmit={handleCreateNFT}>
+              <input
+                type="text"
+                placeholder="NFT Name"
+                value={newNFT.name}
+                onChange={(e) => setNewNFT({...newNFT, name: e.target.value})}
+              />
+              <textarea
+                placeholder="Description"
+                value={newNFT.description}
+                onChange={(e) => setNewNFT({...newNFT, description: e.target.value})}
+              />
+              <input
+                type="number"
+                placeholder="Price in ETH"
+                value={newNFT.price}
+                onChange={(e) => setNewNFT({...newNFT, price: e.target.value})}
+              />
+              <input
+                type="file"
+                onChange={(e) => setNewNFT({...newNFT, image: e.target.files[0]})}
+              />
+              <div className="modal-buttons">
+                <button type="submit">Create</button>
+                <button type="button" onClick={() => setShowCreateModal(false)}>
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

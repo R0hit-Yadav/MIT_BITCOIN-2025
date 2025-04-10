@@ -13,7 +13,7 @@
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
-    padding-top: 80px; /* Ensure it appears below the navbar */
+    padding-top: 80px; 
   }
   
   .news-bar {
@@ -102,15 +102,15 @@
     font-weight: bold;
     color: var(--news-accent-color);
   }
-  
+/*   
   .loading {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 80vh;
-  }
+  } */
   
-  .spinner {
+  /* .spinner {
     border: 4px solid rgba(0, 0, 0, 0.1);
     border-left-color: var(--news-accent-color);
     border-radius: 50%;
@@ -118,9 +118,9 @@
     height: 40px;
     animation: spin 1s linear infinite;
   }
-  
-  @keyframes spin {
+   */
+  /* @keyframes spin {
     to {
       transform: rotate(360deg);
     }
-  }
+  } */
