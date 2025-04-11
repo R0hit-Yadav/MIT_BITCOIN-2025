@@ -5,7 +5,7 @@ import Send from "./pages/Send";
 import History from "./pages/History";
 import Balance from "./pages/Balance";
 import Crypto from "./pages/Crypto";
-import NFTMarketplace from "./components/NFTMarketplace";
+import NFTMarketplace from "./pages/NFTMarketplace"
 import News from "./pages/News";
 import { WalletProvider } from "./context/WalletContext";
 import "./App.css";
