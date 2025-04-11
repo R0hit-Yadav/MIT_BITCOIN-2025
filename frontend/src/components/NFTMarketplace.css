@@ -188,10 +188,20 @@
 }
 
 .nft-description {
-  color: #94a3b8;
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
-  text-align: center;
+  margin: 10px 0;
+  padding: 8px;
+  background-color: #f8f8f8;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #666;
+  line-height: 1.4;
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+.nft-description p {
+  margin: 0;
+  white-space: pre-wrap;
 }
 
 .nft-creator, .nft-price {
@@ -429,4 +439,40 @@
 
 .modal-buttons button[type="button"]:hover {
   background: #e0e0e0;
+}
+
+.nft-image-info {
+  margin: 10px 0;
+  padding: 8px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+}
+
+.image-hash {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.hash-value {
+  font-family: monospace;
+  font-size: 0.9em;
+  word-break: break-all;
+  color: #666;
+}
+
+.view-image-link {
+  display: inline-block;
+  padding: 6px 12px;
+  background-color: #4CAF50;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.9em;
+  transition: background-color 0.3s;
+}
+
+.view-image-link:hover {
+  background-color: #45a049;
 } 

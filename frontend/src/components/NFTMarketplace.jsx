@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import './NFTMarketplace.css';
 import { connectWallet, createNFT, buyNFT, getListedNFTs } from '../services/blockchain';
 import { ethers } from 'ethers';
+import { uploadImageToIPFS, storeNFTMetadata } from '../services/ipfs';
 
 const NFTMarketplace = () => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -9,6 +10,7 @@ const NFTMarketplace = () => {
   const [connectedAccount, setConnectedAccount] = useState('');
   const [nfts, setNfts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [newNFT, setNewNFT] = useState({
     name: '',
@@ -42,12 +44,35 @@ const NFTMarketplace = () => {
     setIsLoading(true);
     try {
       const listedNFTs = await getListedNFTs();
-      const formattedNFTs = listedNFTs.map(nft => ({
-        id: nft.tokenId,
-        creator: nft.seller,
-        price: ethers.formatEther(nft.price),
-        image: `https://ipfs.io/ipfs/${nft.imageHash}`, 
+      const formattedNFTs = await Promise.all(listedNFTs.map(async (nft) => {
+        try {
+          // Fetch metadata from IPFS
+          const response = await fetch(nft.tokenURI);
+          const metadata = await response.json();
+          
+          return {
+            id: nft.tokenId,
+            creator: nft.seller,
+            price: ethers.formatEther(nft.price),
+            image: metadata.image,
+            name: metadata.name,
+            description: metadata.description,
+            imageHash: metadata.image.split('/ipfs/')[1]
+          };
+        } catch (error) {
+          console.error('Error fetching NFT metadata:', error);
+          return {
+            id: nft.tokenId,
+            creator: nft.seller,
+            price: ethers.formatEther(nft.price),
+            image: 'https://via.placeholder.com/400x400?text=No+Image',
+            name: `NFT #${nft.tokenId}`,
+            description: 'No description available',
+            imageHash: 'No hash available'
+          };
+        }
       }));
+      
       setNfts(formattedNFTs);
     } catch (error) {
       console.error('Error loading NFTs:', error);
@@ -70,12 +95,19 @@ const NFTMarketplace = () => {
     }
 
     try {
-      // Here you would typically upload the image to IPFS and get the URI
-      // For now, we'll use a placeholder
-      const tokenURI = `https://ipfs.io/ipfs/${newNFT.image}`;
+      // Upload image to IPFS
+      const imageUrl = await uploadImageToIPFS(newNFT.image);
+      
+      // Create and store metadata
+      const metadataUrl = await storeNFTMetadata(
+        newNFT.name,
+        newNFT.description,
+        imageUrl
+      );
+
       const priceInWei = ethers.parseEther(newNFT.price);
       
-      const success = await createNFT(tokenURI, priceInWei);
+      const success = await createNFT(metadataUrl, priceInWei);
       if (success) {
         setShowCreateModal(false);
         setNewNFT({ name: '', description: '', price: '', image: null });
@@ -83,6 +115,7 @@ const NFTMarketplace = () => {
       }
     } catch (error) {
       console.error('Error creating NFT:', error);
+      alert('Error creating NFT. Please try again.');
     }
   };
 
@@ -90,7 +123,7 @@ const NFTMarketplace = () => {
     try {
       const success = await buyNFT(tokenId, price);
       if (success) {
-        setNfts(prevNfts => prevNfts.filter(nft => nft.id !== tokenId));
+        loadNFTs();
       }
     } catch (error) {
       console.error('Error buying NFT:', error);
@@ -182,6 +215,9 @@ const NFTMarketplace = () => {
             </div>
             <div className="nft-info">
               <h3>{nft.name}</h3>
+              <div className="nft-description">
+                <p>{nft.description}</p>
+              </div>
               <div className="nft-creator">
                 <span>Created by</span>
                 <span className="creator-address">{nft.creator}</span>
@@ -189,6 +225,22 @@ const NFTMarketplace = () => {
               <div className="nft-price">
                 <span>Price</span>
                 <span className="price-value">{nft.price} ETH</span>
+              </div>
+              <div className="nft-image-info">
+                <div className="image-hash">
+                  <span>Image Hash:</span>
+                  <span className="hash-value">{nft.imageHash}</span>
+                </div>
+                {nft.imageHash && (
+                  <a 
+                    href={`https://ipfs.io/ipfs/${nft.imageHash}`} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="view-image-link"
+                  >
+                    View Image
+                  </a>
+                )}
               </div>
               <button className="buy-btn" onClick={() => handleBuyNFT(nft.id, ethers.parseEther(nft.price))}>
                 <span>Buy Now</span>
@@ -238,4 +290,4 @@ const NFTMarketplace = () => {
   );
 };
 
-export default NFTMarketplace; 
+export default NFTMarketplace;
