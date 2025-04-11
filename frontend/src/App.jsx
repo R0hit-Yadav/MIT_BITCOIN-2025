@@ -8,6 +8,8 @@ import Crypto from "./pages/Crypto";
 import NFTMarketplace from "./pages/NFTMarketplace"
 import News from "./pages/News";
 import { WalletProvider } from "./context/WalletContext";
+import AiButton from "./components/aibutton";
+import AI from "./pages/AI";
 import "./App.css";
 
 export default function App() {
@@ -23,7 +25,9 @@ export default function App() {
           <Route path="/crypto" element={<Crypto />} />
           <Route path="/nft-marketplace" element={<NFTMarketplace />} />
           <Route path="/news" element={<News />} />
+          <Route path="/ai" element={<AI />} />
         </Routes>
+        <AiButton />
       </Router>
     </WalletProvider>
   );
