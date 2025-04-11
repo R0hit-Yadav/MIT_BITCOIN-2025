@@ -475,4 +475,47 @@
 
 .view-image-link:hover {
   background-color: #45a049;
+}
+
+.owned-nfts-section {
+  padding: 2rem;
+}
+
+.owned-nfts-section h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #333;
+  text-align: center;
+}
+
+.toggle-nfts-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin: 0 1rem;
+}
+
+.toggle-nfts-btn:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+}
+
+.toggle-nfts-btn.active {
+  background-color: #2196F3;
+}
+
+.toggle-nfts-btn.active:hover {
+  background-color: #0b7dda;
+}
+
+.wallet-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
 } 

@@ -2,13 +2,18 @@ import { ethers } from 'ethers';
 
 const NFTMarketplaceABI = [
     "function tokenCounter() view returns (uint256)",
-    "function listedTokens(uint256) view returns (uint256 tokenId, address seller, uint256 price)",
+    "function listedTokens(uint256) view returns (uint256 tokenId, address seller, uint256 price, string memory tokenURI)",
     "function createNFT(string memory tokenURI, uint256 price)",
     "function buyNFT(uint256 tokenId) payable",
-    "function getListedTokens() view returns (tuple(uint256 tokenId, address seller, uint256 price)[])"
+    "function getListedTokens() view returns (tuple(uint256 tokenId, address seller, uint256 price, string memory tokenURI)[])",
+    "function getNFT(uint256 tokenId) view returns (tuple(uint256 tokenId, address seller, uint256 price, string memory tokenURI))",
+    "function totalSupply() view returns (uint256)",
+    "function ownerOf(uint256 tokenId) view returns (address)"
 ];
 
-const contractAddress = "0x25aE73AE91E3Dd2c59931BF9F4B54fF056987765"; // Use environment variable for contract address
+const contractAddress = import.meta.env.VITE_CONTRACT_ADDRESS; // Use environment variable for contract address NFT2
+
+
 
 export const connectWallet = async () => {
     if (window.ethereum) {
@@ -68,5 +73,47 @@ export const getListedNFTs = async () => {
     } catch (error) {
         console.error("Error fetching listed NFTs:", error);
         return [];
+    }
+};
+
+export const getOwnedNFTs = async (ownerAddress) => {
+    try {
+        const provider = new ethers.BrowserProvider(window.ethereum);
+        const signer = await provider.getSigner();
+        const contract = new ethers.Contract(
+            contractAddress,
+            NFTMarketplaceABI,
+            signer
+        );
+
+        // Get the total number of NFTs
+        const totalSupply = await contract.totalSupply();
+        
+        // Array to store owned NFTs
+        const ownedNFTs = [];
+
+        // Check each token ID to see if it's owned by the address
+        for (let i = 1; i <= totalSupply; i++) {
+            try {
+                const owner = await contract.ownerOf(i);
+                if (owner.toLowerCase() === ownerAddress.toLowerCase()) {
+                    const nft = await contract.getNFT(i);
+                    ownedNFTs.push({
+                        tokenId: i,
+                        seller: nft.seller,
+                        price: nft.price,
+                        tokenURI: nft.tokenURI
+                    });
+                }
+            } catch (error) {
+                // Skip if token doesn't exist or other error
+                continue;
+            }
+        }
+
+        return ownedNFTs;
+    } catch (error) {
+        console.error('Error fetching owned NFTs:', error);
+        throw error;
     }
 }; 

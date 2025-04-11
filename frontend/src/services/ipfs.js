@@ -1,5 +1,5 @@
-const PINATA_API_KEY = 'def6e8a96ecf4d584c64';
-const PINATA_SECRET_API_KEY = '139aabe5ba358184cac484d0ed4b027b41ed3907f6f596338faec3aa7e64e878';
+const PINATA_API_KEY = import.meta.env.VITE_PINATA_API_KEY;
+const PINATA_SECRET_API_KEY = import.meta.env.VITE_PINATA_SECRET_API_KEY;
 
 export async function uploadImageToIPFS(file) {
     const formData = new FormData();
