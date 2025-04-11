@@ -181,12 +181,12 @@ const NFTMarketplace = () => {
     ? nfts 
     : nfts.filter(nft => nft.category === activeCategory);
 
-  const handleCategorySelect = (categoryId) => {
-    setActiveCategory(categoryId);
-    setIsDropdownOpen(false);
-  };
+  // const handleCategorySelect = (categoryId) => {
+  //   setActiveCategory(categoryId);
+  //   setIsDropdownOpen(false);
+  // };
 
-  const currentCategory = categories.find(cat => cat.id === activeCategory);
+  // const currentCategory = categories.find(cat => cat.id === activeCategory);
 
   return (
     <div className="nft-marketplace">
@@ -197,7 +197,7 @@ const NFTMarketplace = () => {
           {connectedAccount ? (
             <>
               <button className="wallet-btn connected">
-                {connectedAccount.slice(0, 6)}...{connectedAccount.slice(-4)}
+                {connectedAccount.slice(0, 8)}...{connectedAccount.slice(-4)}
               </button>
               <button 
                 className={`toggle-nfts-btn ${showOwnedNFTs ? 'active' : ''}`}
@@ -262,7 +262,7 @@ const NFTMarketplace = () => {
         </div>
       ) : (
         <>
-          <div className="filter-section">
+          {/* <div className="filter-section">
             <div className="dropdown-container">
               <div 
                 className={`dropdown-header ${isDropdownOpen ? 'active' : ''}`}
@@ -303,7 +303,7 @@ const NFTMarketplace = () => {
                 </div>
               )}
             </div>
-          </div>
+          </div> */}
           <div className="nft-grid">
             {filteredNFTs.map(nft => (
               <div key={nft.id} className="nft-card">
