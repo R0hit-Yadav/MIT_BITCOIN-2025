@@ -154,12 +154,77 @@
   gap: 1rem;
 }
 
+.wallet-address-container {
+  position: relative;
+  display: inline-block;
+}
+
 .wallet-address {
-  color: white;
-  font-family: monospace;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(139, 92, 246, 0.1);
   padding: 0.5rem 1rem;
   border-radius: 8px;
+  font-family: 'Roboto Mono', monospace;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  color: #8b5cf6;
+  font-size: 0.9rem;
+  display: inline-block;
+}
+
+.wallet-address:hover {
+  background: rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.4);
+  transform: translateY(-1px);
+}
+
+.wallet-address:active {
+  transform: translateY(0);
+}
+
+.copied-tooltip {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(139, 92, 246, 0.9);
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  animation: fadeInOut 2s ease;
+  pointer-events: none;
+}
+
+.copied-tooltip::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 8px;
+  height: 8px;
+  background: rgba(139, 92, 246, 0.9);
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 10px);
+  }
+  15% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  85% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -10px);
+  }
 }
 
 /* Responsive styles */

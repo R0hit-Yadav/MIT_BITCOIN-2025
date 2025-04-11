@@ -272,7 +272,7 @@
 }
 
 .price-value::before {
-  content: 'Ξ';
+  content: '🔷';
   font-size: 1.1rem;
   opacity: 0.9;
 }
@@ -333,23 +333,38 @@
 }
 
 .image-hash {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
   background: rgba(30, 41, 59, 0.5);
   border-radius: 12px;
-  padding: 1rem;
-  margin: 1rem 0;
   border: 1px solid rgba(139, 92, 246, 0.1);
 }
 
-.hash-value {
-  font-family: 'Roboto Mono', monospace;
-  font-size: 0.85rem;
+.image-hash span:first-child {
   color: #94a3b8;
-  word-break: break-all;
-  line-height: 1.5;
-  padding: 0.5rem;
-  background: rgba(20, 30, 45, 0.5);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.hash-value {
+  color: #8b5cf6;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.9rem;
+  background: rgba(139, 92, 246, 0.1);
+  padding: 0.5rem 1rem;
   border-radius: 8px;
-  margin-top: 0.5rem;
+  word-break: break-all;
+  display: inline-block;
+  margin: 0.5rem 0;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .view-image-link {
