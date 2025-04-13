@@ -31,7 +31,11 @@ VaultX is a full-stack application that provides a unified interface for managin
 - 🛡️ **Multi-Signature Support**: Enhanced security for high-value transactions
 - 🔐 **Private Key Management**: Secure storage and handling of private keys
 
----
+
+- **Manage assets** across multiple chains seamlessly
+- **Track balances** in real-time with precision
+- **Execute transactions** with confidence and clarity
+- **Monitor gas fees** to optimize transaction costs
 
 ## 🛠️ Technical Architecture
 
@@ -59,7 +63,7 @@ VaultX is a full-stack application that provides a unified interface for managin
   - Cross-chain bridge contracts
   - Gas optimization contracts
 
----
+## 🛠️ Technology Stack
 
 ## 📦 Project Structure
 
@@ -83,7 +87,19 @@ vaultx/
 └── README.md             # Project documentation
 ```
 
----
+### Backend (Rust)
+- **Warp** - High-performance web framework
+- **ethers-rs** - Ethereum interaction with WebSocket support
+- **tokio** - Asynchronous runtime for optimal performance
+- **serde** - Efficient data serialization
+- **dotenv** - Environment configuration management
+- **chrono** - Precise date and time handling
+
+### Frontend (React + Vite)
+- **Vite** - Next-generation frontend tooling
+- **React** - Responsive UI components
+- **ESLint** - Code quality enforcement
+- **Responsive Design** - Optimized for both desktop and mobile
 
 ## 🚀 Getting Started
 
@@ -117,13 +133,13 @@ cd frontend
 npm install
 # Start the development server
 npm run dev
+
 ```
 
 4. Access the application:
 - Frontend: http://localhost:5173
 - Backend API: http://localhost:8080
 
----
 
 ## 🔧 Development
 
@@ -156,7 +172,11 @@ Deployed on Remix IDE
 - **Smart Contracts**: Solidty + Remix IDE
 - **Integration**: Postman for API testing
 
----
+```
+The application will be available at:
+- Frontend: http://localhost:5173
+- Backend: http://localhost:3000
+```
 
 ## 🔒 Security Considerations
 
@@ -174,16 +194,24 @@ Deployed on Remix IDE
 - Backend caching for frequently accessed data
 - Optimized database queries
 - WebSocket connections for real-time updates
-- Gas optimization for transactions
+- Gas optimization for transaction
 
----
+We welcome contributions from the community! Whether you're fixing bugs, adding features, or improving documentation, your help makes VaultX better for everyone.
+
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## 🤝 Contributing
 
 1. Fork the repository
 2. Contribute 
 
----
+
+VaultX aims to become the definitive solution for crypto asset management, bringing simplicity to blockchain complexity and empowering users with complete control over their digital future.
 
 ## 📄 License
 
