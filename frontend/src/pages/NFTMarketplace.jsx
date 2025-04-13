@@ -6,12 +6,12 @@ import { uploadImageToIPFS, storeNFTMetadata } from '../services/ipfs';
 
 const NFTMarketplace = () => {
   const [activeCategory, setActiveCategory] = useState('all');
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [connectedAccount, setConnectedAccount] = useState('');
   const [nfts, setNfts] = useState([]);
   const [ownedNFTs, setOwnedNFTs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showOwnedNFTs, setShowOwnedNFTs] = useState(false);
+  const [showCopied, setShowCopied] = useState(false);
   
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [newNFT, setNewNFT] = useState({
@@ -181,12 +181,6 @@ const NFTMarketplace = () => {
     ? nfts 
     : nfts.filter(nft => nft.category === activeCategory);
 
-  // const handleCategorySelect = (categoryId) => {
-  //   setActiveCategory(categoryId);
-  //   setIsDropdownOpen(false);
-  // };
-
-  // const currentCategory = categories.find(cat => cat.id === activeCategory);
 
   return (
     <div className="nft-marketplace">
@@ -262,48 +256,6 @@ const NFTMarketplace = () => {
         </div>
       ) : (
         <>
-          {/* <div className="filter-section">
-            <div className="dropdown-container">
-              <div 
-                className={`dropdown-header ${isDropdownOpen ? 'active' : ''}`}
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              >
-                <span className="selected-category">
-                  {currentCategory.icon} {currentCategory.name}
-                </span>
-                <svg 
-                  className={`dropdown-arrow ${isDropdownOpen ? 'open' : ''}`}
-                  width="12" 
-                  height="8" 
-                  viewBox="0 0 12 8" 
-                  fill="none" 
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path 
-                    d="M1 1.5L6 6.5L11 1.5" 
-                    stroke="currentColor" 
-                    strokeWidth="2" 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-              {isDropdownOpen && (
-                <div className="dropdown-menu">
-                  {categories.map(category => (
-                    <div
-                      key={category.id}
-                      className={`dropdown-item ${activeCategory === category.id ? 'active' : ''}`}
-                      onClick={() => handleCategorySelect(category.id)}
-                    >
-                      <span className="category-icon">{category.icon}</span>
-                      <span className="category-name">{category.name}</span>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div> */}
           <div className="nft-grid">
             {filteredNFTs.map(nft => (
               <div key={nft.id} className="nft-card">

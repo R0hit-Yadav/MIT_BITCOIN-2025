@@ -5,6 +5,7 @@ import "./Navbar.css";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [showCopied, setShowCopied] = useState(false);
   const { account, isConnected, connectWallet, disconnectWallet } = useWallet();
   
   const toggleNavbar = () => {
@@ -14,6 +15,18 @@ export default function Navbar() {
   const formatAddress = (address) => {
     if (!address) return '';
     return `${address.slice(0, 6)}...${address.slice(-4)}`;
+  };
+
+  const copyToClipboard = async () => {
+    if (account) {
+      try {
+        await navigator.clipboard.writeText(account);
+        setShowCopied(true);
+        setTimeout(() => setShowCopied(false), 2000); // Hide after 2 seconds
+      } catch (err) {
+        console.error('Failed to copy address:', err);
+      }
+    }
   };
 
   return (
@@ -44,7 +57,12 @@ export default function Navbar() {
         <div className="wallet-section">
           {isConnected ? (
             <div className="wallet-info">
-              <span className="wallet-address">{formatAddress(account)}</span>
+              <div className="wallet-address-container">
+                <span className="wallet-address" onClick={copyToClipboard} title="Click to copy address">
+                  {formatAddress(account)}
+                  {showCopied && <span className="copied-tooltip">Copied!</span>}
+                </span>
+              </div>
               <button onClick={disconnectWallet} className="disconnect-btn">
                 Disconnect
               </button>
