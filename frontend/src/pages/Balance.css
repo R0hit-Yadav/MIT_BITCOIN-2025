@@ -313,3 +313,151 @@
   margin: 0;
   text-align: center;
 }
+
+@media (max-width: 768px) {
+  .home-container {
+    width: 95%;
+    margin: 100px auto 40px;
+    padding: 24px;
+  }
+
+  .home-container h1 {
+    font-size: 24px;
+  }
+
+  .balance-card {
+    padding: 20px;
+  }
+
+  .balance-value {
+    font-size: 28px;
+  }
+
+  .input-group {
+    gap: 12px;
+  }
+
+  .input-group input,
+  .input-group select {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+
+  .input-group button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .balance-display {
+    padding: 16px;
+  }
+
+  .balance-display p {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-container {
+    width: calc(100% - 24px);
+    margin: 90px auto 30px;
+    padding: 20px;
+  }
+
+  .home-container h1 {
+    font-size: 22px;
+  }
+
+  .balance-card {
+    padding: 16px;
+  }
+
+  .balance-value {
+    font-size: 24px;
+  }
+
+  .input-group {
+    gap: 10px;
+  }
+
+  .input-group input,
+  .input-group select {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .input-group button {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .balance-display {
+    padding: 12px;
+  }
+
+  .balance-display p {
+    font-size: 18px;
+  }
+}
+
+/* Add landscape mode support */
+@media (max-height: 500px) and (orientation: landscape) {
+  .home-container {
+    margin: 80px auto 20px;
+    padding: 16px;
+  }
+
+  .balance-card {
+    padding: 12px;
+  }
+
+  .input-group {
+    gap: 8px;
+  }
+
+  .input-group input,
+  .input-group select {
+    padding: 6px 10px;
+  }
+
+  .input-group button {
+    padding: 6px 12px;
+  }
+}
+
+/* Improve touch targets for mobile */
+@media (hover: none) {
+  .input-group input,
+  .input-group select {
+    min-height: 44px;
+  }
+
+  .input-group button {
+    min-height: 44px;
+  }
+
+  .balance-card {
+    padding: 20px;
+  }
+}
+
+/* Add support for foldable devices */
+@media (max-width: 400px) {
+  .home-container {
+    width: calc(100% - 20px);
+    margin: 80px auto 20px;
+    padding: 16px;
+  }
+
+  .home-container h1 {
+    font-size: 20px;
+  }
+
+  .balance-value {
+    font-size: 22px;
+  }
+
+  .balance-display p {
+    font-size: 16px;
+  }
+}

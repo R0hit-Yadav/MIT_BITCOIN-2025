@@ -346,35 +346,68 @@
 }
 
 /* Responsive Adjustments */
-@media (max-width: 768px) {
-  .crypto-app-wrapper {
-    padding: 1rem 0;
+@media (max-width: 1024px) {
+  .crypto-app-container {
+    padding: 0 15px;
   }
 
   .crypto-header-title {
-    font-size: 2.2rem;
+    font-size: 2.4rem;
   }
 
   .crypto-price-value {
-    font-size: 2.2rem;
+    font-size: 2.6rem;
   }
 
   .crypto-price-change {
     font-size: 1.2rem;
   }
 
-  .crypto-chart-container {
-    padding: 20px;
-    min-height: 300px;
+  .crypto-stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .crypto-app-wrapper {
+    padding: 1rem 0;
   }
 
-  .crypto-chart-wrapper {
-    min-height: 250px;
+  .crypto-app-container {
+    margin-top: 80px;
+  }
+
+  .crypto-header {
+    padding: 15px;
+    margin-bottom: 30px;
+  }
+
+  .crypto-header-title {
+    font-size: 2rem;
+  }
+
+  .crypto-selector {
+    padding: 8px 15px;
   }
 
   .crypto-selector-dropdown {
     min-width: 150px;
     font-size: 1rem;
+  }
+
+  .crypto-price-display {
+    padding: 20px;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .crypto-price-value {
+    font-size: 2.2rem;
+    margin-right: 0;
+  }
+
+  .crypto-price-change {
+    font-size: 1.1rem;
   }
 
   .crypto-stats-grid {
@@ -388,5 +421,135 @@
 
   .crypto-stat-value {
     font-size: 1.2rem;
+  }
+
+  .crypto-chart-container {
+    padding: 20px;
+    min-height: 300px;
+  }
+
+  .crypto-chart-wrapper {
+    min-height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .crypto-app-container {
+    margin-top: 70px;
+  }
+
+  .crypto-header {
+    padding: 12px;
+    margin-bottom: 20px;
+  }
+
+  .crypto-header-title {
+    font-size: 1.8rem;
+  }
+
+  .crypto-selector {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .crypto-selector-dropdown {
+    min-width: 120px;
+    font-size: 0.9rem;
+  }
+
+  .crypto-price-display {
+    padding: 15px;
+  }
+
+  .crypto-price-value {
+    font-size: 1.8rem;
+  }
+
+  .crypto-price-change {
+    font-size: 1rem;
+    padding: 6px 12px;
+  }
+
+  .crypto-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .crypto-stat-card {
+    padding: 12px;
+  }
+
+  .crypto-stat-label {
+    font-size: 0.8rem;
+  }
+
+  .crypto-stat-value {
+    font-size: 1.1rem;
+  }
+
+  .crypto-chart-container {
+    padding: 15px;
+    min-height: 250px;
+  }
+
+  .crypto-chart-wrapper {
+    min-height: 200px;
+  }
+
+  .time-range-btn {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Add landscape mode support */
+@media (max-height: 500px) and (orientation: landscape) {
+  .crypto-app-container {
+    margin-top: 60px;
+  }
+
+  .crypto-header {
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+
+  .crypto-price-display {
+    padding: 12px;
+  }
+
+  .crypto-stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+  }
+
+  .crypto-chart-container {
+    min-height: 200px;
+  }
+}
+
+/* Improve touch targets for mobile */
+@media (hover: none) {
+  .crypto-selector,
+  .time-range-btn {
+    min-height: 44px;
+  }
+
+  .crypto-stat-card {
+    padding: 16px;
+  }
+}
+
+/* Add support for foldable devices */
+@media (max-width: 400px) {
+  .crypto-header-title {
+    font-size: 1.6rem;
+  }
+
+  .crypto-price-value {
+    font-size: 1.6rem;
+  }
+
+  .crypto-stat-value {
+    font-size: 1rem;
   }
 }
