@@ -236,7 +236,7 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 ### Home Page 
 ![Home](frontend/public/Home.png)
-![Home](frontend/public/Home.png)
+![Home](frontend/public/Home2.png)
 
 ### Transaction Interface
 ![Transactions](frontend/public/tx.png)
