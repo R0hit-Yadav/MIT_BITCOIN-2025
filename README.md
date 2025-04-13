@@ -234,16 +234,24 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 ## 📸 Project Screenshots
 
-### Dashboard View
-![Dashboard](frontend/public/demo.png)
+### Home Page 
+![Home](frontend/public/Home.png)
+![Home](frontend/public/Home.png)
 
 ### Transaction Interface
-![Transactions](frontend/public/transactions.png)
+![Transactions](frontend/public/tx.png)
 
-### Multi-Chain Support
-![Multi-Chain](frontend/public/multichain.png)
+### History Page 
+![History](frontend/public/history.png)
 
-### Security Features
-![Security](frontend/public/security.png)
+### Crypto Page 
+![Crypto](frontend/public/crypto.png)
+
+### NFTs Marketplace Page 
+![NFTs](frontend/public/NFT.png)
+
+### AI Chatbot
+![AI](frontend/public/AI.png)
+
 
 ---
