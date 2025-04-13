@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { FaPaperPlane, FaRobot, FaUser } from 'react-icons/fa';
+import { FaPaperPlane, FaRobot, FaUser, FaMicrophone, FaStop } from 'react-icons/fa';
 import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
 import './AI.css';
@@ -8,6 +8,8 @@ function AI() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
+  const [isRecording, setIsRecording] = useState(false);
+  const [mediaRecorder, setMediaRecorder] = useState(null);
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
@@ -22,6 +24,43 @@ function AI() {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  const startRecording = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const recorder = new MediaRecorder(stream);
+      const chunks = [];
+
+      recorder.ondataavailable = (e) => chunks.push(e.data);
+      recorder.onstop = async () => {
+        const audioBlob = new Blob(chunks, { type: 'audio/wav' });
+        const formData = new FormData();
+        formData.append('audio', audioBlob);
+
+        try {
+          const response = await axios.post('/api/speech-to-text', formData, {
+            headers: { 'Content-Type': 'multipart/form-data' }
+          });
+          setInput(response.data.text);
+        } catch (error) {
+          console.error('Error converting speech to text:', error);
+        }
+      };
+
+      recorder.start();
+      setMediaRecorder(recorder);
+      setIsRecording(true);
+    } catch (error) {
+      console.error('Error accessing microphone:', error);
+    }
+  };
+
+  const stopRecording = () => {
+    if (mediaRecorder) {
+      mediaRecorder.stop();
+      setIsRecording(false);
+    }
+  };
 
   const handleSendMessage = async () => {
     if (input.trim()) {
@@ -66,7 +105,6 @@ function AI() {
       
       <div className="ai-content">
         <div className="ai-header">
-          
           <h1>VaultX AI <FaRobot className="ai-icon" /></h1>
           <span className="ai-subtitle">Your Intelligent Crypto Companion</span>
         </div>
@@ -110,6 +148,13 @@ function AI() {
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
           />
+          <button 
+            className={`voice-button ${isRecording ? 'recording' : ''}`}
+            onClick={isRecording ? stopRecording : startRecording}
+            title={isRecording ? "Stop Recording" : "Start Recording"}
+          >
+            {isRecording ? <FaStop /> : <FaMicrophone />}
+          </button>
           <button 
             className="send-button" 
             onClick={handleSendMessage}
