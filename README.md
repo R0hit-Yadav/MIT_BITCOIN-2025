@@ -229,3 +229,21 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 ---
 
 > **VaultX** — Your Gateway to Multi-Chain Crypto Management 🔗
+>
+> ---
+
+## 📸 Project Screenshots
+
+### Dashboard View
+![Dashboard](frontend/public/dashboard.png)
+
+### Transaction Interface
+![Transactions](frontend/public/transactions.png)
+
+### Multi-Chain Support
+![Multi-Chain](frontend/public/multichain.png)
+
+### Security Features
+![Security](frontend/public/security.png)
+
+---
