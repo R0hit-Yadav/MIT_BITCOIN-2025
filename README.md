@@ -1,124 +1,203 @@
-
-
 # 🚀 VaultX — A Multi-Chain Crypto Management Platform
 
 **VaultX** is a powerful, user-friendly platform built to simplify your cryptocurrency journey across multiple blockchains. Whether you're sending, receiving, or tracking assets, VaultX puts everything you need in one seamless interface — built with performance, security, and experience at its core.
 
 ---
 
-## 🌟 Inspiration
+## 🌟 Project Overview
 
-Managing cryptocurrencies across different blockchain networks is increasingly complex — switching wallets, juggling interfaces, and keeping track of gas fees is time-consuming and overwhelming. VaultX was born out of a personal need for **a unified platform** that brings clarity and control to multi-chain asset management.
+VaultX is a full-stack application that provides a unified interface for managing cryptocurrencies across multiple blockchain networks. The platform consists of:
 
----
-
-## 💡 Features
-
-VaultX provides a seamless experience to manage your crypto assets across chains:
-
-- 🔁 **Cross-Chain Transactions**: Effortlessly send and receive tokens across Holesky and Sepolia testnets.
-- 💼 **Real-Time Wallet Balances**: View accurate balances for **any wallet address**.
-- 🧾 **Transaction History**: Full transaction logs with **detailed metadata**.
-- 🔐 **Secure Asset Management**: Signature verification and secure transaction handling.
-- 🔍 **Explorer Integration**: Jump to Etherscan links directly from VaultX.
-- ⛽ **Live Gas Tracking**: Keep an eye on gas prices and transaction status in real time.
+- **Frontend**: A modern React application built with Vite
+- **Backend**: A high-performance Rust server using Warp framework
+- **Smart Contracts**: Custom Solidity contracts for enhanced functionality
 
 ---
 
-## 🛠️ Tech Stack
+## 💡 Core Features
 
-### 🔧 Backend (Rust)
+### Cross-Chain Management
+- 🔁 **Multi-Chain Support**: Currently supports Holesky and Sepolia testnets
+- 💼 **Unified Wallet Interface**: Single dashboard for all your crypto assets
+- 🔐 **Secure Transactions**: End-to-end encrypted transaction handling
 
-- **Warp** — Lightning-fast web framework for APIs
-- **ethers-rs** — Blockchain interaction with ease
-- **Multi-chain Configuration** — Easily switch between providers
-- **Infura + Etherscan APIs** — Real-time blockchain data integration
-- **Secure Signing** — Transaction safety with signature verification
+### Asset Management
+- 📊 **Real-Time Balances**: Instant updates of wallet balances across chains
+- 📈 **Transaction History**: Comprehensive transaction logs with metadata
+- ⛽ **Gas Optimization**: Real-time gas price tracking and optimization
 
-### 🎨 Frontend (React)
-
-- **Modern React** — Functional components, hooks, and clean structure
-- **React Router** — Smooth client-side navigation
-- **Context API** — State management made elegant
-- **Responsive UI** — Works beautifully on desktop & mobile
-- **Real-Time UX** — Updates for balances, transactions, and more
-
----
-
-## 🚧 Challenges We Faced
-
-- 🔐 Ensuring **robust security** during signing and transaction handling
-- 🔄 Managing **multi-chain logic** in a clean and scalable way
-- ⚡ Optimizing **performance** for real-time data updates
+### Security Features
+- 🔒 **Signature Verification**: Secure transaction signing process
+- 🛡️ **Multi-Signature Support**: Enhanced security for high-value transactions
+- 🔐 **Private Key Management**: Secure storage and handling of private keys
 
 ---
 
-## 🏆 Accomplishments
+## 🛠️ Technical Architecture
 
-- ✅ Seamless **multi-chain integration**
-- ✨ Intuitive and **user-friendly interface**
-- 🚀 Smooth and secure **end-to-end transaction flow**
+### Frontend Stack
+- **Framework**: React 18 with Vite
+- **State Management**: React Context API
+- **UI Components**: Custom-built components with CSS modules
+- **Routing**: React Router v6
+- **API Integration**: Axios for backend communication
+- **Environment**: Node.js with npm package manager
+
+### Backend Stack
+- **Language**: Rust
+- **Framework**: Warp for high-performance HTTP server
+- **Blockchain Integration**: 
+  - ethers-rs for Ethereum interaction
+  - Web3.rs for multi-chain support
+- **API**: RESTful endpoints with JSON responses
+
+### Smart Contracts
+- **Language**: Solidity
+- **Framework**: Remix for development and testing
+- **Features**:
+  - Multi-signature wallet contracts
+  - Cross-chain bridge contracts
+  - Gas optimization contracts
 
 ---
 
-## 📚 What We Learned
+## 📦 Project Structure
 
-- 📦 Building **scalable full-stack** architectures
-- ⛓️ Deep dive into **blockchain development**
-- 🧠 Designing for **modularity and performance**
-
----
-
-## 🔮 What's Next for VaultX
-
-- 🌐 **Support for More Chains** (Polygon, Arbitrum, and more)
-- 🧠 **Advanced Analytics**: Wallet scoring, investment insights, portfolio stats
-- 📲 **Mobile App**: On-the-go access for crypto management
-- 🛡️ **Advanced Security Features**: 2FA, hardware wallet integration, recovery mechanisms
+```
+vaultx/
+├── frontend/               # React frontend application
+│   ├── src/
+│   │   ├── components/    # Reusable UI components
+│   │   ├── pages/        # Page components
+│   │   ├── services/     # API services
+│   │   ├── context/      # React context providers
+│   │   └── utils/        # Utility functions
+│   └── public/           # Static assets
+│
+├── backend/               # Rust backend server
+│   ├── src/
+│   │   ├── routes/       # API route handlers
+│   │   └── main.rs       # Server entry point
+│   └── contracts/        # Smart contracts
+│
+└── README.md             # Project documentation
+```
 
 ---
 
 ## 🚀 Getting Started
 
-Clone the project:
+### Prerequisites
+- Node.js (v18 or higher)
+- Rust (latest stable)
+- Pinata/IPFS
+- MetaMask or compatible Web3 wallet
 
+### Installation
+
+1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/vaultx.git
-cd vaultx
+git clone https://github.com/R0hit-Yadav/MIT_BITCOIN-2025.git
+cd MIT_BITCOIN-2025
 ```
 
-### Backend (Rust + Warp)
-
+2. Set up the backend:
 ```bash
 cd backend
+# Install dependencies
+cargo build
+# Start the server
 cargo run
 ```
 
-### Frontend (React)
-
+3. Set up the frontend:
 ```bash
 cd frontend
+# Install dependencies
 npm install
-npm start
+# Start the development server
+npm run dev
 ```
+
+4. Access the application:
+- Frontend: http://localhost:5173
+- Backend API: http://localhost:8080
+
+---
+
+## 🔧 Development
+
+### Frontend Development
+```bash
+cd frontend
+npm run dev        # Start development server
+npm run build     # Build for production
+npm run test      # Run tests
+npm run lint      # Run linter
+```
+
+### Backend Development
+```bash
+cd backend
+cargo run         # Start development server
+cargo test        # Run tests
+cargo clippy      # Run linter
+```
+
+### Smart Contract Development
+Deployed on Remix IDE
+
+---
+
+## 🧪 Testing
+
+- **Frontend**: React + Vite Testing Library
+- **Backend**: Rust's built-in testing framework
+- **Smart Contracts**: Solidty + Remix IDE
+- **Integration**: Postman for API testing
+
+---
+
+## 🔒 Security Considerations
+
+- Private keys are never stored on the server
+- All sensitive data is encrypted in transit and at rest
+- Regular security audits and penetration testing
+- Multi-signature support for high-value transactions
+- Rate limiting and DDoS protection
+
+---
+
+## 📈 Performance Optimization
+
+- Frontend code splitting and lazy loading
+- Backend caching for frequently accessed data
+- Optimized database queries
+- WebSocket connections for real-time updates
+- Gas optimization for transactions
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Whether it's bug fixes, new features, or documentation — let's make VaultX even better **together**. 🙌
+1. Fork the repository
+2. Contribute 
 
 ---
 
 ## 📄 License
 
-This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
 
 ---
 
+## 🙏 Acknowledgments
+
+- Ethereum Foundation
+- Rust Community
+- React Community
+- All contributors and supporters
 
 ---
 
-> **VaultX** — One Wallet to Rule Them All 🔗
-
----
+> **VaultX** — Your Gateway to Multi-Chain Crypto Management 🔗
